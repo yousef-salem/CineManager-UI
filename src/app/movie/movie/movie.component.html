@@ -1,0 +1,156 @@
+<div class="movie-details-container">
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <div class="spinner-border text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+
+  <div *ngIf="!isLoading && movie" class="movie-details-content">
+    <button class="btn btn-outline-light back-btn" (click)="goBack()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
+
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="poster-container">
+          <img [src]="posterImage" [alt]="movie.title" class="movie-poster">
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="movie-header">
+          <h1 class="movie-title">{{ movie.title }} <span class="year">({{ movie.year }})</span></h1>
+          
+          <div class="movie-meta d-flex flex-wrap gap-2 align-items-center mb-3">
+            <span class="badge bg-warning text-dark">{{ movie.rated }}</span>
+            <span>{{ movie.runtime }}</span>
+            <span>{{ movie.genre }}</span>
+            <span>{{ movie.released }}</span>
+          </div>
+
+          <div class="ratings mb-4">
+            <div class="rating-item" *ngFor="let rating of movie.ratings">
+              <div class="rating-source">{{ rating.source }}</div>
+              <div class="rating-value">{{ rating.value }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-body">
+          <h3 class="section-title">Plot</h3>
+          <p class="plot">{{ movie.plot }}</p>
+
+          <div class="row details-row">
+            <div class="col-md-6">
+              <div class="detail-item">
+                <span class="detail-label">Director:</span>
+                <span class="detail-value">{{ movie.director }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Writers:</span>
+                <span class="detail-value">{{ movie.writer }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Actors:</span>
+                <span class="detail-value">{{ movie.actors }}</span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-item">
+                <span class="detail-label">Language:</span>
+                <span class="detail-value">{{ movie.language }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Country:</span>
+                <span class="detail-value">{{ movie.country }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Awards:</span>
+                <span class="detail-value">{{ movie.awards }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="additional-info mt-4" *ngIf="getAdditionalInfo().length > 0">
+            <div class="row">
+              <div class="col-md-4" *ngFor="let info of getAdditionalInfo()">
+                <div class="info-box">
+                  <div class="info-label">{{ info.label }}</div>
+                  <div class="info-value" [class]="info.valueClass">
+                    <i class="bi" [class]="info.icon" *ngIf="info.icon"></i> {{ info.value }}
+                  </div>
+                  <div class="info-subtext" *ngIf="info.subtext">{{ info.subtext }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<div class="user-interaction mt-5" *ngIf="!isLoading && movie && isUsser">
+    <h3 class="section-title">Your Rating</h3>
+    
+
+    <div class="rating-stars mb-4">
+      <span class="star-label">Rate this movie:</span>
+      <div class="stars-container">
+        <button *ngFor="let star of getRatingStars()" 
+                (click)="rateMovie(star.number)"
+                class="star-btn"
+                [disabled]="isRating"
+                [class.filled]="star.filled"
+                [class.is-rating]="isRating">
+          <i class="bi" [class.bi-star-fill]="star.filled" [class.bi-star]="!star.filled"></i>
+        </button>
+        <span class="current-rating ms-2" *ngIf="userRating > 0">
+          You rated this {{ userRating }}/5
+        </span>
+        <div class="spinner-border spinner-border-sm text-danger ms-2" *ngIf="isRating"></div>
+      </div>
+    </div>
+    
+
+    <div class="like-dislike mb-4">
+      <span class="reaction-label">Your reaction:</span>
+      <div class="reaction-buttons">
+        <button (click)="toggleLike()" 
+                class="btn reaction-btn like-btn"
+                [class.active]="hasLiked === true">
+          <i class="bi bi-hand-thumbs-up-fill"></i>
+          <span>Like</span>
+          <span class="count" *ngIf="hasLiked === true">1</span>
+        </button>
+        
+        <button (click)="toggleDislike()" 
+                class="btn reaction-btn dislike-btn"
+                [class.active]="hasLiked === false">
+          <i class="bi bi-hand-thumbs-down-fill"></i>
+          <span>Dislike</span>
+          <span class="count" *ngIf="hasLiked === false">1</span>
+        </button>
+      </div>
+    </div>
+    
+
+    <div class="social-sharing">
+      <span class="share-label">Share this movie:</span>
+      <div class="share-buttons">
+        <button class="btn share-btn facebook">
+          <i class="bi bi-facebook"></i>
+        </button>
+        <button class="btn share-btn twitter">
+          <i class="bi bi-twitter"></i>
+        </button>
+        <button class="btn share-btn link">
+          <i class="bi bi-link-45deg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

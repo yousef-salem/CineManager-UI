@@ -1,0 +1,23 @@
+<div class="movie-card" (click)="navigateToMovieDetails()">
+    <div class="card h-100 bg-dark border-0 shadow-sm">
+
+      <div class="poster-container">
+        <img [src]="posterImage" 
+             [alt]="movie?.title || 'Movie poster'" 
+             class="poster-image"
+             (error)="movie.poster = ''" />
+        <div class="hover-overlay">
+          <button class="btn btn-danger btn-sm play-btn">
+            <i class="bi bi-play-fill"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title text-truncate mb-1">{{ movie?.title || 'Untitled' }}</h6>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="badge bg-warning text-dark">{{ releaseYear }}</span>
+          <span class="text-muted small">{{ movie?.type || 'movie' | titlecase }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

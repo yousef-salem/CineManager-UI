@@ -1,0 +1,186 @@
+
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .not-found-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/assets/images/movie-collection3.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    filter: blur(2px);
+    z-index: 0;
+  }
+  
+  .not-found-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 30px;
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  .error-code {
+    font-size: 120px;
+    font-weight: 700;
+    color: var(--primary-red);
+    text-shadow: 0 0 20px rgba(220, 53, 69, 0.7);
+    margin: 0;
+    line-height: 1;
+    position: relative;
+  }
+  
+  .error-code::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+  }
+  
+  .error-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-white);
+    margin: 15px 0 30px;
+  }
+  
+  .film-strip {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 25px 20px;
+    margin: 20px 0 30px;
+    position: relative;
+    border-top: 4px solid var(--accent-gold);
+    border-bottom: 4px solid var(--accent-gold);
+  }
+  
+  .film-holes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 16px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .film-holes:first-child {
+    top: -10px;
+  }
+  
+  .film-holes:last-child {
+    bottom: -10px;
+  }
+  
+  .film-holes::before,
+  .film-holes::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: var(--bg-dark);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--accent-gold);
+  }
+  
+  .film-holes::before {
+    margin-left: 40px;
+  }
+  
+  .film-holes::after {
+    margin-right: 40px;
+  }
+  
+  .error-message {
+    font-size: 18px;
+    color: var(--text-white);
+    margin: 0;
+    padding: 5px 0;
+  }
+  
+  .btn-return {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary-red), #FF416C);
+    color: var(--text-white);
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+  }
+  
+  .btn-return:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.7);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    31% { opacity: 1; }
+    32% { opacity: 0.8; }
+    33% { opacity: 1; }
+    98% { opacity: 1; }
+    99% { opacity: 0.5; }
+  }
+  
+  .error-code {
+    animation: flicker 6s infinite;
+  }
+  
+  @media (max-width: 576px) {
+    .error-code {
+      font-size: 90px;
+    }
+    
+    .error-title {
+      font-size: 24px;
+    }
+    
+    .film-strip {
+      padding: 20px 10px;
+    }
+    
+    .film-holes::before {
+      margin-left: 20px;
+    }
+    
+    .film-holes::after {
+      margin-right: 20px;
+    }
+  }

@@ -1,0 +1,107 @@
+<nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <i class="bi bi-film"></i>
+        <div class="navbar-title">FlexNest</div>
+      </div>
+      
+      <div class="navbar-actions">
+        <div class="user-menu">
+          <button class="user-btn" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i>
+          </button>
+      
+          <div class="dropdown-menu">
+            <div class="dropdown-header">
+              <i class="bi bi-person-circle"></i>
+              <span>{{authService.decodedTaken?.email || 'N/A' }}   </span>
+            </div>
+            <<ng-container *ngIf="authService.checkCapabilities('ROLE_ADMIN')" >
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" (click)="openAddAdminModal()">
+                <i class="bi bi-gear"></i> Add Admin
+              </button>
+          
+            <div class="dropdown-divider"></div></ng-container>
+            <button class="dropdown-item logout-btn" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+
+<div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content register-card">
+        <div class="modal-header border-0">
+          <h2 class="register-title w-100" id="addAdminModalLabel">Add New Admin</h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addAdminForm" (ngSubmit)="onSubmitAdmin()">
+            <div class="form-group">
+              <label for="adminUsername">Username</label>
+              <div class="input-group">
+                <span class="input-icon"><i class="bi bi-person-fill"></i></span>
+                <input id="adminUsername" type="text" class="form-control" formControlName="username" placeholder="Admin username">
+              </div>
+              <div *ngIf="addAdminForm.controls['username'].invalid && addAdminForm.controls['username'].touched" class="error-message">
+                <i class="bi bi-exclamation-circle"></i> Username is required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="adminEmail">Email</label>
+              <div class="input-group">
+                <span class="input-icon"><i class="bi bi-envelope-fill"></i></span>
+                <input id="adminEmail" type="email" class="form-control" formControlName="email" placeholder="Admin email">
+              </div>
+              <div *ngIf="addAdminForm.controls['email'].invalid && addAdminForm.controls['email'].touched" class="error-message">
+                <i class="bi bi-exclamation-circle"></i> Valid email is required.
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <label for="adminPassword">Password</label>
+              <div class="input-group">
+                <span class="input-icon"><i class="bi bi-lock-fill"></i></span>
+                <input id="adminPassword" type="password" class="form-control" formControlName="password" placeholder="Create a password">
+              </div>
+              <div *ngIf="addAdminForm.controls['password'].touched && addAdminForm.controls['password'].errors" class="error-message">
+                <i class="bi bi-exclamation-circle"></i>
+                <span *ngIf="addAdminForm.controls['password'].errors['required']">Password is required.</span>
+                <span *ngIf="addAdminForm.controls['password'].errors['minlength']">Minimum 6 characters.</span>
+                <span *ngIf="addAdminForm.controls['password'].errors['maxlength']">Maximum 12 characters.</span>
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <label for="adminConfirmPassword">Confirm Password</label>
+              <div class="input-group">
+                <span class="input-icon"><i class="bi bi-shield-lock-fill"></i></span>
+                <input id="adminConfirmPassword" type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm password">
+              </div>
+              <div *ngIf="addAdminForm.controls['confirmPassword'].invalid && addAdminForm.controls['confirmPassword'].touched" class="error-message">
+                <i class="bi bi-exclamation-circle"></i> Confirm password is required.
+              </div>
+              <div *ngIf="addAdminForm.controls['confirmPassword'].value !== addAdminForm.controls['password'].value && addAdminForm.controls['confirmPassword'].touched" class="error-message">
+                <i class="bi bi-x-circle"></i> Passwords do not match.
+              </div>
+            </div>
+        
+            <div class="form-actions">
+              <button type="submit" class="btn btn-register-action" [disabled]="addAdminForm.invalid">
+                <span>Add Admin</span> <i class="bi bi-person-plus"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

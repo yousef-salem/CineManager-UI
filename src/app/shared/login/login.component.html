@@ -1,0 +1,42 @@
+<div class="login-container">
+    <div class="login-card">
+      <h2 class="login-title">Login</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-person-fill"></i></span>
+            <input id="username" type="text" class="form-control" formControlName="username" placeholder="Enter username">
+          </div>
+          <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" class="error-message">
+            <i class="bi bi-exclamation-circle"></i> Username is required.
+          </div>
+        </div>
+        
+    
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-lock-fill"></i></span>
+            <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter password">
+          </div>
+          <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="error-message">
+            <i class="bi bi-exclamation-circle"></i> Password is required.
+          </div>
+        </div>
+    
+        <div class="form-actions">
+          <button type="submit" class="btn btn-login" [disabled]="loginForm.invalid">
+            <span>Login</span> <i class="bi bi-box-arrow-in-right"></i>
+          </button>
+        </div>
+        
+        <div class="form-footer">
+          <p>Don't have an account?</p>
+          <a [routerLink]="['/register']" class="btn btn-register">
+            <span>Register</span> <i class="bi bi-person-plus-fill"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>

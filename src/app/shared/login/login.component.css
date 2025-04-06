@@ -1,0 +1,210 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    background-color: var(--bg-dark);
+  }
+  
+  .login-container::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background-image: url('/assets/images/movie-collection2.jpg'); 
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: 0;
+  }
+  
+  .login-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background: linear-gradient(to top, 
+      rgba(18, 18, 18, 0.3) 0%,
+      rgba(18, 18, 18, 0.4) 20%,
+      rgba(18, 18, 18, 0.5) 40%,
+      rgba(18, 18, 18, 0.6) 60%,
+      var(--bg-dark) 100%);
+    z-index: 1;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(30, 30, 30, 0.85);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .login-title {
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .login-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-white);
+    font-weight: 500;
+  }
+  
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--text-white);
+    opacity: 0.7;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-white);
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-gold);
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .error-message {
+    color: var(--primary-red);
+    font-size: 14px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .form-actions {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-login {
+    background: linear-gradient(135deg, var(--primary-red), #FF416C);
+    color: var(--text-white);
+  }
+  
+  .btn-login:hover {
+    background: linear-gradient(135deg, #FF416C, var(--primary-red));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+  }
+  
+  .btn-login:disabled {
+    background: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+  }
+  
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .form-footer p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+  
+  .btn-register {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    width: auto;
+    padding: 8px 16px;
+  }
+  
+  .btn-register:hover {
+    background-color: rgba(255, 193, 7, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .login-card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }

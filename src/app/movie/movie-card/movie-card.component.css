@@ -1,0 +1,83 @@
+.movie-card {
+    width: 200px;
+    margin: 0.5rem;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      z-index: 10;
+      
+      .poster-image {
+        opacity: 0.7;
+      }
+      
+      .hover-overlay {
+        opacity: 1;
+      }
+    }
+    
+    
+    .card {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      
+      &:hover {
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+      }
+    }
+    
+    .poster-container {
+      position: relative;
+      height: 275px;
+      background-color: #1a1a1a;
+      
+      .poster-image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+      }
+      
+      .hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.5);
+        
+        .play-btn {
+          padding: 0.25rem 0.5rem;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    
+    .card-body {
+      padding: 0.75rem;
+      
+      .card-title {
+        color: var(--text-white);
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+    }
+    
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25em 0.4em;
+    }
+  }

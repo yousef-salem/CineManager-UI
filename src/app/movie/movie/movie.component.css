@@ -1,0 +1,376 @@
+.movie-details-container {
+    padding: 2rem;
+    color: var(--text-white);
+    
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    
+    .back-btn {
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+    
+    .poster-container {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      
+      .movie-poster {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+    
+    .movie-header {
+      margin-bottom: 2rem;
+      
+      .movie-title {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-white);
+        
+        .year {
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 400;
+        }
+      }
+      
+      .movie-meta {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+        
+        .badge {
+          font-size: 0.8rem;
+          padding: 0.35em 0.65em;
+        }
+      }
+      
+      .ratings {
+        display: flex;
+        gap: 1.5rem;
+        
+        .rating-item {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          min-width: 100px;
+          
+          .rating-source {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          
+          .rating-value {
+            font-weight: 600;
+            color: var(--accent-gold);
+          }
+        }
+      }
+    }
+    
+    .movie-body {
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-gold);
+        position: relative;
+        padding-bottom: 0.5rem;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 60px;
+          height: 3px;
+          background-color: var(--primary-red);
+        }
+      }
+      
+      .plot {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      
+      .details-row {
+        margin-bottom: 2rem;
+        
+        .detail-item {
+          margin-bottom: 1rem;
+          
+          .detail-label {
+            display: inline-block;
+            min-width: 90px;
+            font-weight: 600;
+            color: var(--accent-gold);
+          }
+          
+          .detail-value {
+            color: rgba(255, 255, 255, 0.9);
+          }
+        }
+      }
+      
+      .additional-info {
+        .info-box {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 8px;
+          padding: 1rem;
+          height: 100%;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          }
+      
+          .info-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+          }
+      
+          .info-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            
+            &.imdb-rating {
+              color: var(--accent-gold);
+            }
+            
+            &.metascore {
+              color: #6c3;
+            }
+          }
+      
+          .info-subtext {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+          }
+        }
+      }
+      
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .movie-details-container {
+      padding: 1rem;
+      
+      .movie-header {
+        .ratings {
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          
+          .rating-item {
+            min-width: auto;
+            padding: 0.5rem;
+            flex: 1;
+          }
+        }
+      }
+      
+      .additional-info {
+        .col-md-4 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+  .user-interaction {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-gold);
+      
+      &::after {
+        width: 40px;
+        height: 2px;
+      }
+    }
+    
+    .rating-stars {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      
+      .star-label, .reaction-label, .share-label {
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .stars-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        
+        .star-btn {
+          background: transparent;
+          border: none;
+          padding: 0;
+          color: rgba(255, 255, 255, 0.3);
+          font-size: 1.5rem;
+          transition: all 0.2s ease;
+          position: relative;
+          
+          &.filled {
+            color: var(--accent-gold);
+          }
+          
+          &:hover:not(.is-rating) {
+            transform: scale(1.2);
+            color: var(--accent-gold);
+          }
+          
+          &:disabled {
+            opacity: 0.7;
+          }
+        }
+        
+        .current-rating {
+          color: var(--accent-gold);
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .like-dislike {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      
+      .reaction-buttons {
+        display: flex;
+        gap: 0.5rem;
+        
+        .reaction-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 50px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.05);
+          color: rgba(255, 255, 255, 0.7);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+          
+          &.active {
+            &.like-btn {
+              background: rgba(25, 135, 84, 0.2);
+              border-color: rgba(25, 135, 84, 0.5);
+              color: #198754;
+            }
+            
+            &.dislike-btn {
+              background: rgba(220, 53, 69, 0.2);
+              border-color: rgba(220, 53, 69, 0.5);
+              color: var(--primary-red);
+            }
+          }
+          
+          .count {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    
+    .social-sharing {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      
+      .share-buttons {
+        display: flex;
+        gap: 0.5rem;
+        
+        .share-btn {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.05);
+          color: rgba(255, 255, 255, 0.7);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-2px);
+            
+            &.facebook {
+              background: rgba(24, 119, 242, 0.2);
+              color: #1877f2;
+            }
+            
+            &.twitter {
+              background: rgba(29, 161, 242, 0.2);
+              color: #1da1f2;
+            }
+            
+            &.link {
+              background: rgba(255, 255, 255, 0.1);
+              color: var(--accent-gold);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .user-interaction {
+      .rating-stars, .like-dislike, .social-sharing {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .reaction-buttons, .share-buttons {
+        width: 100%;
+        
+        button {
+          flex: 1;
+        }
+      }
+    }
+  }

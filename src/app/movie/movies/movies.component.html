@@ -1,0 +1,95 @@
+<div class="movies-container">
+
+    <div class="search-filter-container mb-4 p-3 bg-dark rounded">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="input-group">
+            <input type="text" 
+                   class="form-control bg-dark text-light border-secondary" 
+                   placeholder="Search movies..." 
+                   [(ngModel)]="searchQuery"
+                   (keyup.enter)="onSearch()">
+            <button class="btn btn-danger" 
+                    type="button" 
+                    (click)="onSearch()"
+                    [disabled]="isLoading">
+              <i class="bi bi-search"></i> Search
+            </button>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text bg-dark text-light border-secondary">Year</span>
+            <input type="text" 
+                   class="form-control bg-dark text-light border-secondary" 
+                   placeholder="Filter by year" 
+                   [value]="yearFilter"
+                   (input)="onYearInput($event)"
+                   (keyup.enter)="onSearch()"
+                   maxlength="4">
+          </div>
+        </div>
+        
+        <div class="col-md-2 d-flex justify-content-end">
+          <button class="btn btn-outline-secondary" 
+                  (click)="clearFilters()"
+                  [disabled]="isLoading || (!searchQuery && !yearFilter)">
+            <i class="bi bi-x-lg"></i> Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  
+
+    <div *ngIf="isLoading" class="text-center my-5">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading movies...</p>
+    </div>
+
+    <div *ngIf="!isLoading">
+
+      <div *ngIf="movies.length === 0  && (searchQuery || yearFilter)" class="alert alert-info">
+        <i class="bi bi-info-circle"></i> No movies found matching your criteria.
+      </div>
+      <div *ngIf="movies.length === 0  && (!searchQuery && !yearFilter)" class="alert alert-info">
+        <i class="bi bi-info-circle"></i> No movies for display now.
+      </div>
+  
+
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+        <div class="col" *ngFor="let movie of movies">
+          <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+      </div>
+  
+
+      <div *ngIf="totalPages > 1" class="d-flex justify-content-center mt-4">
+        <nav aria-label="Movies pagination">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 0">
+              <a class="page-link" (click)="onPageChange(currentPage - 1)" href="javascript:void(0)">
+                &laquo;
+              </a>
+            </li>
+            
+            <li *ngFor="let page of getPageNumbers()" 
+                class="page-item" 
+                [class.active]="page === currentPage">
+              <a class="page-link" (click)="onPageChange(page)" href="javascript:void(0)">
+                {{ page + 1 }}
+              </a>
+            </li>
+            
+            <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+              <a class="page-link" (click)="onPageChange(currentPage + 1)" href="javascript:void(0)">
+                &raquo;
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>

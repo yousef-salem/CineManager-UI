@@ -1,0 +1,68 @@
+<div class="register-container">
+    <div class="register-card">
+      <h2 class="register-title">Create Account</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-person-fill"></i></span>
+            <input id="username" type="text" class="form-control" formControlName="username" placeholder="Choose a username">
+          </div>
+          <div *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched" class="error-message">
+            <i class="bi bi-exclamation-circle"></i> Username is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-envelope-fill"></i></span>
+            <input id="email" type="email" class="form-control" formControlName="email" placeholder="Choose a email">
+          </div>
+          <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="error-message">
+            <i class="bi bi-exclamation-circle"></i> Email is required.
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-lock-fill"></i></span>
+            <input id="password" type="password"  class="form-control" formControlName="password" placeholder="Create a password">
+          </div>
+          <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].errors" class="error-message">
+            <i class="bi bi-exclamation-circle"></i>
+            <span *ngIf="registerForm.controls['password'].errors['required']">Password is required.</span>
+            <span *ngIf="registerForm.controls['password'].errors['minlength']">Minimum 6 characters.</span>
+            <span *ngIf="registerForm.controls['password'].errors['maxlength']">Maximum 12 characters.</span>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-group">
+            <span class="input-icon"><i class="bi bi-shield-lock-fill"></i></span>
+            <input id="confirmPassword" type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirm your password">
+          </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched" class="error-message">
+            <i class="bi bi-exclamation-circle"></i> Confirm password is required.
+          </div>
+          <div *ngIf="registerForm.controls['confirmPassword'].value !== registerForm.controls['password'].value && registerForm.controls['confirmPassword'].touched" class="error-message">
+            <i class="bi bi-x-circle"></i> Passwords do not match.
+          </div>
+        </div>
+    
+        <div class="form-actions">
+          <button type="submit" class="btn btn-register-action" [disabled]="registerForm.invalid">
+            <span>Create Account</span> <i class="bi bi-arrow-right-circle"></i>
+          </button>
+        </div>
+        
+        <div class="form-footer">
+          <p>Already have an account?</p>
+          <a [routerLink]="['/login']" class="btn btn-login-link">
+            <span>Log In</span> <i class="bi bi-box-arrow-in-right"></i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
