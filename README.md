@@ -1,27 +1,53 @@
 # CineManagerUI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+This project was generated with Angular CLI version 16.2.16.
 
-## Development server
+## Development Server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Run the following command:
 
-## Code scaffolding
+ng serve
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Then open your browser at:
 
-## Build
+http://localhost:4200/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The app will reload automatically on file changes.
 
-## Running unit tests
+## Backend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### This frontend connects to the backend repository:
 
-## Running end-to-end tests
+https://github.com/yousef-salem/CineManager.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Admin Access
 
-## Further help
+### Use the default admin to:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Manage videos
+
+Add movies or movie collections from the external API
+
+Delete movies or collections from the internal database
+
+Add new admins (from the "User" option in the navbar)
+
+## User Access
+
+### Users can:
+
+Register and log in
+
+View the movies added by admins
+
+Add ratings and like/dislike movies
+
+## Search and View
+
+### Both admins and users can:
+
+Search movies by year or title
+
+Show movie collection with pagination
+
+Open and view movie details
